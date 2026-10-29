@@ -50,7 +50,10 @@ endif
 
 PKG_SOURCE:=lucky_$(PKG_VERSION)_Linux_$(LUCKY_ARCH).tar.gz
 PKG_SOURCE_URL:=https://github.com/gdy666/lucky/releases/download/v$(PKG_VERSION)
-PKG_HASH:=skip
+# Fork scoped build: only x86_64 (25.12) is built, so pin the x86_64 tarball hash.
+# Other architectures would fail the hash check by design; do not revert to skip,
+# the OpenWrt SDK action rejects skip as a deprecated hash.
+PKG_HASH:=51de79d5ccac4f22fc0b3b311f7f6641b92d6469066dc135e73bb717f843b816
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk

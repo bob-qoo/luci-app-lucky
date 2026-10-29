@@ -99,7 +99,7 @@ OPENWRT_FORCE=1 bash /home/user/src/luci-app-lucky/scripts/build-sdk.sh "$PWD" \
 
 构建 LuCI 包时，`luci-i18n-lucky-zh-cn` 会由 LuCI 构建系统生成。
 
-核心包从 GitHub Releases 下载指定版本资源，使用 `PKG_HASH:=skip`，更新版本无需维护架构哈希表。
+本 fork 只构建 25.12 x86_64：核心包从 GitHub Releases 下载指定版本资源，`PKG_HASH` 已锁定为该架构 3.5.0 包的 sha256（`51de79…b816`）。切勿改回 `PKG_HASH:=skip`——OpenWrt SDK Action 会把 skip 判为 deprecated hash 而直接失败，这正是此前全矩阵失败的根因。换版本或换架构时须同步更新该哈希。
 
 ## 自动检查
 
